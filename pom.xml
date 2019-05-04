@@ -11,6 +11,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 		<aws-lambda-java-core.version>1.2.0</aws-lambda-java-core.version>
 		<aws-lambda-java-events.version>2.2.6</aws-lambda-java-events.version>
+		<lib.file.name>${artifactId}-lib</lib.file.name>
+		<aws-lambda.classpath.dir>/java/lib</aws-lambda.classpath.dir>
 	</properties>
 
 	<dependencyManagement>
@@ -18,7 +20,7 @@
 			<dependency>
 				<groupId>com.amazonaws</groupId>
 				<artifactId>aws-java-sdk-bom</artifactId>
-				<version>1.11.534</version>
+				<version>1.11.545</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -30,11 +32,13 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
 			<version>${aws-lambda-java-core.version}</version>
+			<scope>compile</scope>
         </dependency>
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-lambda-java-events</artifactId>
 			<version>${aws-lambda-java-events.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -51,22 +55,50 @@
     </dependencies>
 
     <build>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-shade-plugin</artifactId>
-          <version>3.1.1</version>
-          <configuration>
-          </configuration>
-          <executions>
-            <execution>
-              <phase>package</phase>
-              <goals>
-                <goal>shade</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
+        <plugins>
+            <!-- lib jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${lib.file.name}</finalName>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>${groupId}:${artifactId}</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${lib.file.name}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>src/main/resources/assembly/zip.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

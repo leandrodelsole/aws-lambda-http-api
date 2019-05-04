@@ -16,6 +16,8 @@ resource "aws_lambda_function" "insert-user" {
   memory_size = 256 #mb
 
   role = "${aws_iam_role.insert-user-exec.arn}"
+
+  layers = ["${aws_lambda_layer_version.libs.arn}"]
 }
 
 resource "aws_iam_role" "insert-user-exec" {
@@ -105,6 +107,8 @@ resource "aws_lambda_function" "list-user" {
   memory_size = 256 #mb
 
   role = "${aws_iam_role.list-user-exec.arn}"
+
+  layers = ["${aws_lambda_layer_version.libs.arn}"]
 }
 
 resource "aws_iam_role" "list-user-exec" {
