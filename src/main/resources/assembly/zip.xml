@@ -7,10 +7,11 @@
 	<formats>
 		<format>zip</format>
 	</formats>
-	<files>
-		<file>
-			<source>${project.build.directory}/${lib.file.name}.jar</source>
+	<dependencySets>
+		<dependencySet>
 			<outputDirectory>${aws-lambda.classpath.dir}</outputDirectory>
-		</file>
-	</files>
+			<useProjectArtifact>false</useProjectArtifact>
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets>
 </assembly>
