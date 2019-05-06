@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd "${0%/*}"
 cd ../
 printf '\n\nClean Verify do Projeto\n\n'
 mvn clean verify
