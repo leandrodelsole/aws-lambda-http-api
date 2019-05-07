@@ -26,7 +26,6 @@ dependency-reduced-pom.xml
 *.iml
 **/.idea/*
 !.idea/codeStyleSettings.xml
-!.idea/encodings.xml
 
 # terraform
 **/.terraform
