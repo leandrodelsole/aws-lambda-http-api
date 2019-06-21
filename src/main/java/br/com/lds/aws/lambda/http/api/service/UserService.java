@@ -9,6 +9,7 @@ import java.util.Map;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
+import com.amazonaws.services.lambda.runtime.Context;
 
 import br.com.lds.aws.lambda.http.api.model.User;
 
@@ -16,7 +17,13 @@ public class UserService {
 
 	private static final String TABLE = "User";
 
-	private final DynamoService dynamoService = new DynamoService();
+	private final Context context;
+	private final DynamoService dynamoService;
+
+	public UserService(Context context) {
+		this.context = context;
+		dynamoService = new DynamoService(context);
+	}
 
 	public void create(User user) {
 		final PutItemRequest putItemRequest = new PutItemRequest(TABLE, itemOf(user));

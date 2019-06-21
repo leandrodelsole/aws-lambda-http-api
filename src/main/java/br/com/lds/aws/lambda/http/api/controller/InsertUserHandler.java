@@ -10,15 +10,15 @@ import br.com.lds.aws.lambda.http.api.service.UserService;
 
 public class InsertUserHandler implements RequestHandler<UserRequest, User> {
 
-	private UserService userService = new UserService();
-
 	public User handleRequest(UserRequest userRequest, Context context) {
 
 		final LambdaLogger logger = context.getLogger();
-		logger.log("\nrequest " + userRequest);
+		logger.log("\nhandleRequest start " + userRequest + " remaining time " + context.getRemainingTimeInMillis());
 
 		final User user = new User(userRequest);
-		userService.create(user);
+		new UserService(context).create(user);
+
+		logger.log("\nhandleRequest end remaining time " + context.getRemainingTimeInMillis());
 		return user;
 	}
 }

@@ -10,9 +10,7 @@ import br.com.lds.aws.lambda.http.api.service.UserService;
 
 public class ListUserHandler implements RequestHandler<Void, List<User>> {
 
-	private UserService userService = new UserService();
-
 	public List<User> handleRequest(Void voidRequest, Context context) {
-		return userService.list();
+		return new UserService(context).list();
 	}
 }
