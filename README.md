@@ -1,6 +1,7 @@
 # AWS Lambda HTTP API
 
 Este projeto tem a intenção de demonstrar uma implementação bem simplista de um CRUD em uma API HTTP com AWS Lambda, utilizando API Gateway e DynamoDB.
+
 A organização das classes foi feita para lembrar um projeto Spring Boot. Bastaria mudar as classes do pacote controller, adicionar algumas anotações ao projeto, então ele poderia ser convertido para utilizar o SpringBoot.
 
 Para criação e deploy da infraestrutura foi usado o Terraform.
@@ -43,5 +44,6 @@ Ao final do Setup, são exibidos comandos curl para os endpoints existentes. Bas
 ## Não esqueça
 
 Execute o `destroy.sh` antes de ir embora :)
+
 Ele irá apagar todos os recursos gerenciados pelo Terraform, criados por este projeto.
 Para limpar completamente sua conta AWS, é preciso apagar manualmente os logs criados pelos Lambdas, presentes no CloudWatch.
