@@ -3,8 +3,6 @@ package br.com.lds.aws.lambda.http.api.model;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.amazonaws.services.dynamodbv2.document.Item;
-
 import br.com.lds.aws.lambda.http.api.dto.UserRequest;
 
 public class User {
@@ -20,12 +18,6 @@ public class User {
 
 	public User(UserRequest userRequest) {
 		this(UUID.randomUUID().toString(), userRequest.getName(), userRequest.getEmail());
-	}
-
-	public User(Item item) {
-		this.id = item.getString("id");
-		this.name = item.getString("name");
-		this.email = item.getString("email");
 	}
 
 	public String getId() {
