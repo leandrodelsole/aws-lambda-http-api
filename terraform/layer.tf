@@ -7,5 +7,5 @@ resource "aws_lambda_layer_version" "libs" {
   source_code_hash = "${base64sha256(file(var.lib-file))}"
   layer_name = "UsersLib"
 
-  compatible_runtimes = ["java8"]
+  compatible_runtimes = ["provided"]
 }

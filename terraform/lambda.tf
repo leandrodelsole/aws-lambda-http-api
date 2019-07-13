@@ -10,14 +10,14 @@ resource "aws_lambda_function" "insert-user" {
   source_code_hash = "${base64sha256(file(var.source-code-file))}"
 
   handler = "br.com.lds.aws.lambda.http.api.controller.InsertUserHandler"
-  runtime = "java8"
+  runtime = "provided"
 
   timeout = 60 #segundos
   memory_size = 256 #mb
 
   role = "${aws_iam_role.insert-user-exec.arn}"
 
-  layers = ["${aws_lambda_layer_version.libs.arn}"]
+  layers = ["${aws_lambda_layer_version.libs.arn}", "arn:aws:lambda:sa-east-1:528713202253:layer:Java-11:13"]
 }
 
 resource "aws_iam_role" "insert-user-exec" {
@@ -101,14 +101,14 @@ resource "aws_lambda_function" "list-user" {
   source_code_hash = "${base64sha256(file(var.source-code-file))}"
 
   handler = "br.com.lds.aws.lambda.http.api.controller.ListUserHandler"
-  runtime = "java8"
+  runtime = "provided"
 
   timeout = 60 #segundos
   memory_size = 256 #mb
 
   role = "${aws_iam_role.list-user-exec.arn}"
 
-  layers = ["${aws_lambda_layer_version.libs.arn}"]
+  layers = ["${aws_lambda_layer_version.libs.arn}", "arn:aws:lambda:sa-east-1:528713202253:layer:Java-11:13"]
 }
 
 resource "aws_iam_role" "list-user-exec" {
@@ -191,14 +191,14 @@ resource "aws_lambda_function" "echo-user" {
   source_code_hash = "${base64sha256(file(var.source-code-file))}"
 
   handler = "br.com.lds.aws.lambda.http.api.controller.EchoHandler"
-  runtime = "java8"
+  runtime = "provided"
 
   timeout = 60 #segundos
   memory_size = 128 #mb
 
   role = "${aws_iam_role.echo-user-exec.arn}"
 
-  layers = ["${aws_lambda_layer_version.libs.arn}"]
+  layers = ["${aws_lambda_layer_version.libs.arn}", "arn:aws:lambda:sa-east-1:528713202253:layer:Java-11:13"]
 }
 
 resource "aws_iam_role" "echo-user-exec" {
