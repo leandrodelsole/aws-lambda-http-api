@@ -2,7 +2,7 @@
 
 Este projeto tem a intenção de demonstrar uma implementação bem simplista de um CRUD em uma API HTTP com AWS Lambda, utilizando API Gateway e DynamoDB.
 
-A organização das classes foi feita para lembrar um projeto Spring Boot. Bastaria mudar as classes do pacote controller, adicionar algumas anotações ao projeto, então ele poderia ser convertido para utilizar o SpringBoot.
+Ele implementa um runtime customizado do AWS Lambda para executar uma aplicação nativa pré compilada da GraalVM.
 
 Para criação e deploy da infraestrutura foi usado o Terraform.
 
@@ -12,6 +12,7 @@ Para criação e deploy da infraestrutura foi usado o Terraform.
 * [Maven](https://maven.apache.org/download.cgi) 3.5.4 ou superior
 * [Terraform](https://www.terraform.io/downloads.html) v0.11.12 ou superior
 * [Conta AWS](https://portal.aws.amazon.com/billing/signup)
+* [Docker](https://www.docker.com/) 18.09.2 ou superior
 
 ## Setup na AWS
 
@@ -25,8 +26,7 @@ access_key = "AWS123AWS123AWS123AW"
 secret_key = "naovoucontar12345naovoucontar12345naovou"
 ```
 
-
-Entre na pasta scripts e execute o script `build_and_deploy.sh`. 
+Entre na pasta scripts e execute o script `build_and_deploy.sh`.
 
 **Não esqueça**, para evitar custos, ao final dos testes execute os passos da seção _não esqueça_.
 
@@ -36,6 +36,9 @@ Entre na pasta scripts e execute o script `build_and_deploy.sh`.
 Caso faça alterações no API Gateway, lembre que é preciso recriá-lo para que tenha efeito (o Terraform não consegue fazer um diff, [conforme o tutorial deles](https://learn.hashicorp.com/terraform/aws/lambda-api-gateway#making-changes-to-the-api-gateway-configuration)).
 
 Para alterar o código do lambda, basta reexecutar o script `build_and_deploy.sh` novamente, como feito no Setup.
+
+Para serializar/desserializar diferentes objetos através do Jackson, é necessário listá-los no arquivo `reflect.json`.
+Para criar um novo Handler, é necessário listá-lo no arquivo `reflect.json`.
 
 ## Execução
 

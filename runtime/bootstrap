@@ -1,0 +1,3 @@
+#!/bin/sh
+set -euo pipefail
+./aws-lambda-http-api-1.0-SNAPSHOT

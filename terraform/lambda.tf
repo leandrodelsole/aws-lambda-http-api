@@ -1,5 +1,5 @@
 variable "source-code-file" {
-  default = "../target/aws-lambda-http-api-1.0-SNAPSHOT.jar"
+  default = "../target/package/aws-lambda-http-api-runtime-and-native-image.zip"
 }
 
 #insert users
@@ -16,8 +16,6 @@ resource "aws_lambda_function" "insert-user" {
   memory_size = 256 #mb
 
   role = "${aws_iam_role.insert-user-exec.arn}"
-
-  layers = ["${aws_lambda_layer_version.libs.arn}", "arn:aws:lambda:sa-east-1:528713202253:layer:Java-11:13"]
 }
 
 resource "aws_iam_role" "insert-user-exec" {
@@ -107,8 +105,6 @@ resource "aws_lambda_function" "list-user" {
   memory_size = 256 #mb
 
   role = "${aws_iam_role.list-user-exec.arn}"
-
-  layers = ["${aws_lambda_layer_version.libs.arn}", "arn:aws:lambda:sa-east-1:528713202253:layer:Java-11:13"]
 }
 
 resource "aws_iam_role" "list-user-exec" {
@@ -197,8 +193,6 @@ resource "aws_lambda_function" "echo-user" {
   memory_size = 128 #mb
 
   role = "${aws_iam_role.echo-user-exec.arn}"
-
-  layers = ["${aws_lambda_layer_version.libs.arn}", "arn:aws:lambda:sa-east-1:528713202253:layer:Java-11:13"]
 }
 
 resource "aws_iam_role" "echo-user-exec" {
@@ -267,4 +261,3 @@ resource "aws_lambda_permission" "echo-user" {
 
   source_arn = "${aws_api_gateway_deployment.http-api.execution_arn}/${aws_api_gateway_integration.users-echo.integration_http_method}${aws_api_gateway_resource.echo.path}"
 }
-

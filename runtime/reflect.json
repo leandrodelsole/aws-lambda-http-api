@@ -1,0 +1,27 @@
+[
+  {
+	"name": "br.com.lds.aws.lambda.http.api.controller.EchoHandler",
+	"allPublicConstructors" : true,
+	"allPublicMethods": true
+  },
+  {
+	"name": "br.com.lds.aws.lambda.http.api.controller.InsertUserHandler",
+	"allPublicConstructors" : true,
+	"allPublicMethods": true
+  },
+  {
+	"name": "br.com.lds.aws.lambda.http.api.controller.ListUserHandler",
+	"allPublicConstructors" : true,
+	"allPublicMethods": true
+  },
+  {
+	"name": "br.com.lds.aws.lambda.http.api.dto.UserRequest",
+	"allPublicConstructors" : true,
+	"allPublicMethods": true
+  },
+  {
+	"name": "br.com.lds.aws.lambda.http.api.model.User",
+	"allPublicConstructors" : true,
+	"allPublicMethods": true
+  }
+]
