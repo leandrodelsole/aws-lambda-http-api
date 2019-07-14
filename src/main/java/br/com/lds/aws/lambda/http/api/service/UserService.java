@@ -16,6 +16,7 @@ import software.amazon.awssdk.services.dynamodb.model.ScanRequest;
 public class UserService {
 
 	private static final String TABLE = "User";
+	private static final AttributeValue EMPTY = AttributeValue.builder().build();
 
 	private final Context context;
 	private final DynamoService dynamoService;
@@ -42,7 +43,7 @@ public class UserService {
 	}
 
 	private User userOf(Map<String, AttributeValue> item) {
-		return new User(item.get("id").toString(), item.get("name").toString(), item.get("email").toString());
+		return new User(item.getOrDefault("id", EMPTY).s(), item.getOrDefault("name", EMPTY).s(), item.getOrDefault("email", EMPTY).s());
 	}
 
 	private Map<String, AttributeValue> itemOf(User user) {
