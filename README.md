@@ -7,6 +7,9 @@ A organização das classes foi feita para lembrar um projeto Spring Boot. Basta
 Para criação e deploy da infraestrutura foi usado o Terraform.
 
 
+Explore as branches deste repositório para alternativas de implementação, com destaque para a implementação utilizando a GraalVM com um ganho expressivo para o Cold Start Time.
+
+
 ## Pré-requisitos
 * [JDK 1.8](https://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven](https://maven.apache.org/download.cgi) 3.5.4 ou superior
